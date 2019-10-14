@@ -10,16 +10,16 @@ import javax.persistence.Id;
 @Data
 @NoArgsConstructor
 public class Accounts {
-    @Id
-    private String login;
-    private String password;
-    private Integer lastactive;
-    private Byte accessLevel;
-    private String lastIP;
-    private Integer lastServerId;
-    private int ban_expire;
-    private String allow_ip;
-    private String l2email;
-    private String privatekey;
+  @Id
+  private String login;
+  private String password;
+  private Integer lastactive;
+  private Byte accessLevel;
+  private String lastIP;
+  private Integer lastServerId;
+  private int ban_expire;
+  private String allow_ip;
+  private String l2email;
+  private String privatekey;
 
 }
