@@ -1,12 +1,14 @@
 package com.l2.site.model.characters;
 
 import com.l2.site.model.account.Accounts;
+import com.l2.site.model.item.Items;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @Entity
@@ -19,6 +21,9 @@ public class Characters {
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "account_name")
   private Accounts accounts;
+
+  @OneToMany(mappedBy = "characters", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+  private List<Items> items;
 
   private String char_name;
   @Column(columnDefinition = "TINYINT")
