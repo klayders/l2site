@@ -1,5 +1,5 @@
 server:
-  port: 8881
+  port: 9001
 
 spring:
   datasource:
@@ -14,5 +14,5 @@ spring:
       naming:
         implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
-    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
-
+    database-platform: org.hibernate.dialect.MySQL57Dialect
+    open-in-view: false
