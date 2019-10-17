@@ -1,4 +1,4 @@
-var character_url = 'api/v1/character{/id}';
+var character_url = '/api/v1/character{/id}';
 var characterApi = Vue.resource(character_url);
 
 Vue.component('user-row', {
@@ -23,19 +23,15 @@ Vue.component('user-list', {
     result.json().then(data = > {
       data.forEach(user = > this.users.push(user)
   )
-  })
-  )
+  }
+  ))
   }
 });
 
-var apps = new Vue({
-  el: '#apps',
+var users = new Vue({
+  el: '#users',
   template: '<user-list :users="users"/>',
   data: {
-    users: [
-      // {name: "vasya", lastactive: 132},
-      // {name: "petya", lastactive: 321},
-      // {name: "nastya", lastactive: 777}
-    ]
+    users: []
   }
 });
