@@ -16,6 +16,6 @@ spring:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     open-in-view: false
+    show-sql: true
   profiles:
     active: local
-
