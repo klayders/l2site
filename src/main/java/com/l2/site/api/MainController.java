@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.HashMap;
 
-@Controller
-@RequestMapping("/")
+//@Controller
+//@RequestMapping("/")
 public class MainController {
 
   @Value("${spring.profiles.active}")
