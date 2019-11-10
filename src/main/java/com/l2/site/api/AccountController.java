@@ -16,7 +16,7 @@ import static com.l2.site.utils.SiteUtils.API;
 public class AccountController {
 
   private static final String VERSION = "/v1";
-  static final String ACCOUNT_MAPPING = API + VERSION + "/character";
+  static final String ACCOUNT_MAPPING = API + VERSION + "/account";
 
   private final AccountService accountService;
 
