@@ -108,7 +108,7 @@ Vue.component('message-row', {
    */
   template:
     '<div>' +
-    ' <i>({{message.id}})</i> {{message.text}}' +
+    ' <i>({{message.id}})</i> {{message.text}} {{message.creationDate}}' +
     '<span style="position: absolute; right: 0">' +
     '<input type="button" value="Редактировать" @click="edit"/>' +
     '<input type="button" value="Удалить" @click="del"/>' +
