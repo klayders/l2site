@@ -70,11 +70,11 @@ public class MessageController {
 
     fillMeta(messageFromDb);
 
-    Message update = messageRepository.save(message);
+    Message update = messageRepository.save(messageFromDb);
 
     wsSender.accept(EventType.UPDATE, update);
 
-    return messageRepository.save(messageFromDb);
+    return update;
   }
 
   @DeleteMapping("{id}")
