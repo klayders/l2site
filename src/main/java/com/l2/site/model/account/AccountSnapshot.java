@@ -25,14 +25,14 @@ public class AccountSnapshot {
 
   private List<CharactersSnapshot> characters;
 
-  public static AccountSnapshot withCharacters(Accounts accounts) {
+  public static AccountSnapshot withCharacters(Account accounts) {
     var charactersSnapshots = getCharactersSnapshots(accounts);
     var accountSnapshot = of(accounts);
     accountSnapshot.setCharacters(charactersSnapshots);
     return accountSnapshot;
   }
 
-  public static AccountSnapshot of(Accounts accounts) {
+  public static AccountSnapshot of(Account accounts) {
     return AccountSnapshot.builder()
       .login(accounts.getLogin())
       .lastActive(accounts.getLastactive())
@@ -43,7 +43,7 @@ public class AccountSnapshot {
       .build();
   }
 
-  private static List<CharactersSnapshot> getCharactersSnapshots(Accounts accounts) {
+  private static List<CharactersSnapshot> getCharactersSnapshots(Account accounts) {
     if (accounts.getCharacters() != null) {
       return accounts.getCharacters().stream()
         .map(CharactersSnapshot::of)

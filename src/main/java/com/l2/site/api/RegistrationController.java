@@ -1,7 +1,7 @@
 package com.l2.site.api;
 
 import com.l2.site.account.AccountService;
-import com.l2.site.model.account.Accounts;
+import com.l2.site.model.account.Account;
 import com.l2.site.model.account.RegistrationRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,7 +18,7 @@ public class RegistrationController {
 
   @PostMapping
   public void registration(@RequestBody RegistrationRequest registrationForm){
-    Accounts accounts = new Accounts();
+    Account accounts = new Account();
     accounts.setLogin(registrationForm.getLogin());
     accounts.setPassword(registrationForm.getPassword());
 //    accountService.save(accounts);

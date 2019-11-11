@@ -1,7 +1,7 @@
 package com.l2.site.account;
 
+import com.l2.site.model.account.Account;
 import com.l2.site.model.account.AccountSnapshot;
-import com.l2.site.model.account.Accounts;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,6 +17,10 @@ public class AccountService {
 
   private final AccountsRepository accountsRepository;
 
+  public Account findByl2Email(String email) {
+    return accountsRepository.findByL2email(email);
+  }
+
   public AccountSnapshot getAccountById(String id) {
     return accountsRepository.findById(id)
       .map(AccountSnapshot::withCharacters)
@@ -24,7 +28,7 @@ public class AccountService {
   }
 
   @Transactional
-  public AccountSnapshot save(Accounts accounts) {
+  public AccountSnapshot save(Account accounts) {
     return AccountSnapshot.of(accountsRepository.save(accounts));
   }
 

@@ -1,6 +1,6 @@
 package com.l2.site.model.characters;
 
-import com.l2.site.model.account.Accounts;
+import com.l2.site.model.account.Account;
 import com.l2.site.model.item.Items;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -20,7 +20,7 @@ public class Characters {
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "account_name")
-  private Accounts accounts;
+  private Account accounts;
 
   @OneToMany(mappedBy = "characters", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
   private List<Items> items;

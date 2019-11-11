@@ -12,7 +12,8 @@ import java.util.Set;
 @Data
 @NoArgsConstructor
 @EqualsAndHashCode(of = "login")
-public class Accounts {
+@Table(name = "accounts")
+public class Account {
   @Id
   private String login;
   private String password;

@@ -1,8 +1,8 @@
 package com.l2.site.api;
 
 import com.l2.site.account.AccountService;
+import com.l2.site.model.account.Account;
 import com.l2.site.model.account.AccountSnapshot;
-import com.l2.site.model.account.Accounts;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,7 +32,7 @@ public class AccountController {
 
   @PostMapping
   public AccountSnapshot doIt(@RequestParam String login, @RequestParam String password) {
-    var accounts = new Accounts();
+    var accounts = new Account();
     accounts.setLogin(login);
     accounts.setPassword(password);
     return accountService.save(accounts);
@@ -40,7 +40,7 @@ public class AccountController {
 
   @DeleteMapping
   public AccountSnapshot ss(@RequestParam String login, @RequestParam String password) {
-    var accounts = new Accounts();
+    var accounts = new Account();
     accounts.setLogin(login);
     accounts.setPassword(password);
     return accountService.save(accounts);
