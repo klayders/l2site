@@ -21,8 +21,8 @@ public class AccountService {
     return accountsRepository.findByL2email(email);
   }
 
-  public AccountSnapshot getAccountById(String id) {
-    return accountsRepository.findById(id)
+  public AccountSnapshot getAccountById(String login) {
+    return accountsRepository.findById(login)
       .map(AccountSnapshot::withCharacters)
       .orElse(null);
   }

@@ -30,7 +30,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
   private final AccountService accountService;
 
   @Bean
-  public BCryptPasswordEncoder encoder() {
+  public BCryptPasswordEncoder passwordEncoder() {
     return new BCryptPasswordEncoder();
   }
 
@@ -43,7 +43,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 
     var account = accountService.findByl2Email(username);
 
-    if (!encoder().matches(password, account.getPassword())) {
+    if (!passwordEncoder().matches(password, account.getPassword())) {
       throw new BadCredentialsException("form.error.bad.credentials");
     }
     var session = JwtUser.builder()

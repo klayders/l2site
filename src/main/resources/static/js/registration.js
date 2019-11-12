@@ -1,4 +1,3 @@
-
 let registration_url = '/api/registration';
 let registrationApi = Vue.resource(registration_url);
 
@@ -27,17 +26,17 @@ Vue.component('reg-form', {
         password: this.password
       };
 
-        registrationApi.save({}, registrationForm).then(result =>
-          result.json().then(data => {
-            // this.messages.push(data);
-            /**
-             * Читим поле ввода
-             */
-            this.text = '';
-            this.password = '';
-          }))
-      }
+      registrationApi.save({}, registrationForm).then(response => {
+
+        this.login = '';
+        this.password = '';
+
+      }, response => {
+        this.login = response.body.message;
+        // error callback
+      });
     }
+  }
 })
 
 var registration = new Vue({
