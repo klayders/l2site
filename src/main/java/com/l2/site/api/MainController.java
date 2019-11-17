@@ -23,29 +23,15 @@ public class MainController {
   private final MessageRepository messageRepository;
 
   @GetMapping
-  public String main(Model model, @CurrentUser(required = false) JwtUser jwtUser) {
+  public String main(Model model, @CurrentUser JwtUser jwtUser) {
     HashMap<Object, Object> data = new HashMap<>();
-
-    data.put("profile", jwtUser);
-    data.put("messages", messageRepository.findAll());
-
-    model.addAttribute("isDevMode", "dev".equals(profile));
+    if (jwtUser != null) {
+      data.put("profile", jwtUser);
+      data.put("messages", messageRepository.findAll());
+    }
     model.addAttribute("frontendData", data);
+    model.addAttribute("isDevMode", "dev".equals(profile));
 
     return "index";
   }
-
-
-//  @GetMapping
-//  public String main(Model model, @AuthenticationPrincipal User user) {
-//    HashMap<Object, Object> data = new HashMap<>();
-//    if (user != null) {
-//      data.put("profile", user);
-//      data.put("messages", messageRepository.findAll());
-//    }
-//    model.addAttribute("frontendData", data);
-//    model.addAttribute("isDevMode", "dev".equals(profile));
-//
-//    return "index";
-//  }
 }

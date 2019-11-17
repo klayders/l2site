@@ -1,16 +1,31 @@
 <template>
-  <div>
-    <div v-if="!profile">
+  <v-app>
+    <v-app-bar app>
+      <v-app-bar-nav-icon/>
+      <v-toolbar-title>Lineage 2</v-toolbar-title>
+      <v-spacer></v-spacer>
+
+      <span v-if="profile">{{profile.displayName}}</span>
+
+      <v-btn v-if="profile" icon href="/logout">
+        <v-icon>{{ svgPath }}</v-icon>
+      </v-btn>
+    </v-app-bar>
+
+    <v-content>
       Необходимо авторизоваться или зарегистрироваться
       <login-form/>
       <registration/>
-    </div>
-    <div v-else>
-      <div>{{profile.displayName}}&nbsp;<a href="/logout">Выйти</a></div>
+
       <character-list/>
       <message-list :messages="messages"/>
+
+    </v-content>
+    <div v-if="!profile">
+
     </div>
-  </div>
+
+  </v-app>
 </template>
 
 <script>
@@ -18,6 +33,7 @@
     import LoginForm from "../components/login/LoginForm.vue";
     import Registration from "../components/registration/Registration.vue";
     import CharacterList from "../components/character/CharacterList.vue";
+    import {mdiExitToApp} from '@mdi/js'
 
     export default {
         name: "App",
@@ -28,6 +44,7 @@
         },
         data() {
             return {
+                svgPath: mdiExitToApp,
                 messages: frontendData.messages,
                 profile: frontendData.profile
             }
@@ -36,5 +53,4 @@
 </script>
 
 <style scoped>
-
 </style>

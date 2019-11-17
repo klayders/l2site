@@ -10,8 +10,10 @@ module.exports = {
     compress: true,
     port: 8000,
     allowedHosts: [
-      'localhost:9001'
-    ]
+      'localhost:9000'
+    ],
+    stats: 'errors-only',
+    clientLogLevel: 'error',
   },
   module: {
     rules: [
@@ -28,6 +30,32 @@ module.exports = {
       {
         test: /\.vue$/,
         loader: 'vue-loader'
+      },
+      {
+        test: /\.css$/,
+        use: [
+          'vue-style-loader',
+          'css-loader'
+        ]
+      },
+      {
+        test: /\.s(c|a)ss$/,
+        use: [
+          'vue-style-loader',
+          'css-loader',
+          {
+            loader: 'sass-loader',
+            options: {
+              implementation: require('sass'),
+              fiber: require('fibers'),
+              indentedSyntax: true
+            }
+          }
+        ]
+      },
+      {
+        test: /\.(eot|svg|ttf|woff|woff2)(\?\S*)?$/,
+        loader: 'file-loader'
       }
     ]
   },

@@ -9,9 +9,9 @@
     <label>
       <input type="text" placeholder="Повторите пароль" v-model="passwordConfirm"/>
     </label>
-    <div>
-      <div class="g-recaptcha" data-sitekey="6LdKbGAUAAAAAOsDMKHHT0_vKHBxk9dpvtp2_bQI" data-theme="dark"></div>
-    </div>
+    <!--    <div>-->
+    <!--      <div class="g-recaptcha" data-sitekey="6LdKbGAUAAAAAOsDMKHHT0_vKHBxk9dpvtp2_bQI" data-theme="dark"></div>-->
+    <!--    </div>-->
     <input type="button" style="position: relative; width: 100px;" value="Зарегистрироваться" @click="save"/>
   </div>
 </template>
@@ -33,7 +33,7 @@
                     login: this.login,
                     password: this.password,
                     passwordConfirm: this.passwordConfirm,
-                    captcha: this.captcha
+                    // captcha: this.captcha
                 };
                 registrationApi.save({}, registrationForm).then(() => {
                     this.login = '';
