@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <title>Sarafan</title>
@@ -7,9 +7,12 @@
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.1"></script>
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  <script th:inline="javascript">
+      let frontendData = [[${frontendData}]];
+  </script>
 </head>
 <body>
-<h3>Sarafan</h3>
+<h3>Lineage 2</h3>
 
 <div id="users">
 </div>
@@ -18,10 +21,14 @@
 <div id="messages">
 </div>
 <br/>
+<div id="auth">
+</div>
+<br/>
 <div id="registration">
 </div>
 
 <script src="/js/users.js"></script>
+<script src="/js/login.js"></script>
 <script src="/js/message.js"></script>
 <script src="/js/registration.js"></script>
 

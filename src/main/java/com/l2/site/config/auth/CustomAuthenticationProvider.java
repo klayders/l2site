@@ -43,7 +43,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 
     var account = accountService.findByl2Email(username);
 
-    if (!passwordEncoder().matches(password, account.getPassword())) {
+    if (account == null || !passwordEncoder().matches(password, account.getPassword())) {
       throw new BadCredentialsException("form.error.bad.credentials");
     }
     var session = JwtUser.builder()

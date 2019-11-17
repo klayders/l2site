@@ -47,6 +47,7 @@ public class AuthenticationSuccessHandler extends SavedRequestAwareAuthenticatio
     cookie.setMaxAge(60 * 60 * 24 * 14); // 14 days
 
     httpResponse.addCookie(cookie);
-    httpResponse.addHeader(AUTHORIZATION, tokenValue);
+//    if need add headers
+//    httpResponse.addHeader(AUTHORIZATION, tokenValue);
   }
 }

@@ -47,10 +47,15 @@ Vue.component('reg-form', {
 
 var registration = new Vue({
   el: "#registration",
-  template: '<reg-form/>',
-  // data: {
-  //   users: []
-  // }
+  template:
+
+    '<div>' +
+    '<reg-form v-if="!profile"/>' +
+    '</div>',
+
+  data: {
+    profile: frontendData.profile
+  }
 });
 
 

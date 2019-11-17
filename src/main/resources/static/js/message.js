@@ -1,5 +1,5 @@
 function getIndex(list, id) {
-  for (var i = 0; i < list.length; i++) {
+  for (let i = 0; i < list.length; i++) {
     if (list[i].id === id) {
       return i;
     }
@@ -160,19 +160,6 @@ Vue.component('message-list', {
      */
     '<message-row v-for="message in messages" :key="message.id" :message="message" :editMethod="editMethod" :messages="messages" />' +
     '</div>',
-  /**
-   * жизненный цикл, при инициализации этого компонента, мы обращаемся на бэк за данными
-   */
-  created: function () {
-    messageApi.get()
-      .then(result => result.json()
-        /**
-         * после получения респонса от бэка, мы обращаемся в коллекцию, которая приходит в 'props.messages'
-         * и добавляем все данные которые пришли с бекенда
-         */
-          .then(data => data.forEach(message => this.messages.push(message)
-        )))
-  },
   methods: {
     editMethod: function (message) {
       this.message = message;
@@ -191,17 +178,38 @@ let messages = new Vue({
    * название айдишника элемента в index.html -> <div id='messages'/>
    */
   el: '#messages',
-  /**
-   * используется компонент, который описан выше под названием 'message-list'
-   * двоеточие перед messages нужно для того, чтобы vue понимал, что тут передается значение,
-   * а не текст рандомный. За это ответ 'props' у 'message-list'.
-   */
-  template: '<message-list :messages="messages"/>',
+  template:
+    '<div>' +
+    /**
+     * авторизация, которая проверяет, что пришло из frontendData.profile
+     */
+    '<div v-if="!profile">Необходимо авторизоваться <a href="/login">Authorization</a> </div>' +
+    /**
+     * используется компонент, который описан выше под названием 'message-list'
+     * двоеточие перед messages нужно для того, чтобы vue понимал, что тут передается значение,
+     * а не текст рандомный. За это ответ 'props' у 'message-list'.
+     */
+    '<message-list v-else :messages="messages"/>' +
+    '</div>',
   /**
    * список сообщений, которые будут рендерится.
    * Для теста можно вручную прописать в массив объекты
    */
   data: {
-    messages: []
-  }
+    messages: frontendData.messages,
+    profile: frontendData.profile
+  },
+  /**
+   * жизненный цикл, при инициализации этого компонента, мы обращаемся на бэк за данными
+   */
+  created: function () {
+    // messageApi.get()
+    //   .then(result => result.json()
+    //   /**
+    //    * после получения респонса от бэка, мы обращаемся в коллекцию, которая приходит в 'props.messages'
+    //    * и добавляем все данные которые пришли с бекенда
+    //    */
+    //     .then(data => data.forEach(message => this.messages.push(message)
+    //     )))
+  },
 });

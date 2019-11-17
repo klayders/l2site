@@ -36,10 +36,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
   protected void configure(HttpSecurity http) throws Exception {
     http
       .authorizeRequests()
-      .and().headers()
+      .antMatchers("/", "/login**", "/js/**", "/error**").permitAll()
+      .and()
+      .headers()
       .frameOptions().sameOrigin()
-      .and().formLogin()
-      .loginPage("/login")
+      .and()
+      .formLogin().loginPage("/login")
       .permitAll()
       .successHandler(successHandler)
       .failureHandler(failureHandler)
