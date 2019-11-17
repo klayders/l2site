@@ -29,6 +29,7 @@ public class MainController {
     data.put("profile", jwtUser);
     data.put("messages", messageRepository.findAll());
 
+    model.addAttribute("isDevMode", "dev".equals(profile));
     model.addAttribute("frontendData", data);
 
     return "index";

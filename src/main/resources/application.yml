@@ -26,5 +26,5 @@ spring:
     open-in-view: false
     show-sql: false
   profiles:
-    active: local
+    active: dev
 
