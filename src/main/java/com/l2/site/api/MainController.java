@@ -23,7 +23,7 @@ public class MainController {
   private final MessageRepository messageRepository;
 
   @GetMapping
-  public String main(Model model, @CurrentUser JwtUser jwtUser) {
+  public String main(Model model, @CurrentUser(required = false) JwtUser jwtUser) {
     HashMap<Object, Object> data = new HashMap<>();
     if (jwtUser != null) {
       data.put("profile", jwtUser);

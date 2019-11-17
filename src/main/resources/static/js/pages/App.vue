@@ -1,7 +1,6 @@
 <template>
   <v-app>
     <v-app-bar app>
-      <v-app-bar-nav-icon/>
       <v-toolbar-title>Lineage 2</v-toolbar-title>
       <v-spacer></v-spacer>
 
@@ -13,18 +12,17 @@
     </v-app-bar>
 
     <v-content>
-      Необходимо авторизоваться или зарегистрироваться
-      <login-form/>
-      <registration/>
+      <v-container v-if="profile">
+        <message-list :messages="messages"/>
+      </v-container>
+      <v-container v-else>
+        Необходимо авторизоваться или зарегистрироваться
+        <login-form/>
+        <registration/>
+      </v-container>
 
       <character-list/>
-      <message-list :messages="messages"/>
-
     </v-content>
-    <div v-if="!profile">
-
-    </div>
-
   </v-app>
 </template>
 
@@ -53,4 +51,11 @@
 </script>
 
 <style scoped>
+  main {
+    background: url('https://look.com.ua/pic/201209/1680x1050/look.com.ua-17669.jpg'); /*no-repeat center center fixed;*/
+    -moz-background-size: 100%; /* Firefox 3.6+ */
+    -webkit-background-size: 100%; /* Safari 3.1+ и Chrome 4.0+ */
+    -o-background-size: 100%; /* Opera 9.6+ */
+    background-size: 100%; /* Современные браузеры */
+  }
 </style>

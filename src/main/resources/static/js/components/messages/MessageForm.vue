@@ -1,8 +1,24 @@
 <template>
-  <div>
-    <input type="text" placeholder="напиши сюда текст" v-model="text"/>
-    <input type="button" style="position: relative; width: 100px;" value="Сохранить" @click="save"/>
-  </div>
+  <v-layout row>
+    <v-text-field
+      v-model="text"
+      label="new message"
+      hint="Hey!=)"
+      placeholder="написать сообщение"
+      :outlined="true"
+      :rounded="true"
+      :solo="true"
+      :single-line="false"
+      :filled="false"
+      :clearable="true"
+      :persistent-hint="true"
+      :loading="false"
+      :flat="false"
+      :counter="0"
+      :dense="true"
+    ></v-text-field>
+    <v-btn @click="save">Send</v-btn>
+  </v-layout>
 </template>
 
 <script>
