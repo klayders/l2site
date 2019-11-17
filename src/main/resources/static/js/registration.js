@@ -8,6 +8,7 @@ Vue.component('reg-form', {
     return {
       login: '',
       password: '',
+      captcha: ''
     }
   },
   /**
@@ -17,13 +18,18 @@ Vue.component('reg-form', {
     '<div> ' +
     '<input type="text" placeholder="Введите логин" v-model="login"/> ' +
     '<input type="text" placeholder="Введите логин" v-model="password"/> ' +
+    '<div>' +
+    '<div class="g-recaptcha" data-sitekey="6LdKbGAUAAAAAOsDMKHHT0_vKHBxk9dpvtp2_bQI" data-theme="dark"></div>' +
+    '</div>' +
     '<input type="button"  style="position: relative; width: 100px;" value="Сохранить" @click="save"/> ' +
-    '</div>',
+    '</div>'
+  ,
   methods: {
     save: function () {
       let registrationForm = {
         login: this.login,
-        password: this.password
+        password: this.password,
+        captcha: this.captcha
       };
 
       registrationApi.save({}, registrationForm).then(response => {

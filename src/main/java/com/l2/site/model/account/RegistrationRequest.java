@@ -8,4 +8,5 @@ import lombok.NoArgsConstructor;
 public class RegistrationRequest {
   private String login;
   private String password;
+  private String captcha;
 }

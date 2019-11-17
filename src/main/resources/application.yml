@@ -2,7 +2,9 @@ app:
   domain: localhost
   jwt:
     secret: local
-    expirationDays: 14
+    expirationDays: 1
+  captcha:
+    secret: 6LdKbGAUAAAAANo27DeMW66QiM12266U64VeRNeo
 
 server:
   port: 9001
