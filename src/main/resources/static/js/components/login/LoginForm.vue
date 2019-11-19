@@ -1,43 +1,63 @@
 <template>
-  <div>
-    <label>
-      <input type="text" placeholder="Введите логин" v-model="username"/>
-    </label>
-    <label>
-      <input type="text" placeholder="Введите пароль" v-model="password"/>
-    </label>
-    <input type="button" style="position: relative; width: 100px;" value="Войти" @click="auth"/>
-  </div>
+  <v-app id="inspire">
+    <v-content>
+      <v-container
+        class="fill-height"
+        fluid
+      >
+        <v-row
+          align="center"
+          justify="center"
+        >
+          <v-col
+            cols="12"
+            sm="8"
+            md="4"
+          >
+            <v-card class="elevation-12">
+              <v-toolbar
+                color="primary"
+                dark
+                flat
+              >
+                <v-toolbar-title>Login form</v-toolbar-title>
+                <v-spacer/>
+              </v-toolbar>
+              <v-card-text>
+                <v-form>
+                  <v-text-field
+                    label="Login"
+                    name="login"
+                    prepend-icon="mdiHuman"
+                    type="text"
+                  />
+
+                  <v-text-field
+                    id="password"
+                    label="Password"
+                    name="password"
+                    prepend-icon="lock"
+                    type="password"
+                  />
+                </v-form>
+              </v-card-text>
+              <v-card-actions>
+                <v-spacer/>
+                <v-btn color="primary">Login</v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-col>
+        </v-row>
+      </v-container>
+    </v-content>
+  </v-app>
 </template>
 
 <script>
     export default {
-        name: "AuthValidation",
-        data() {
-            return {
-                username: '',
-                password: '',
-            }
+        props: {
+            source: String,
         },
-        methods: {
-            auth() {
-                let registrationForm = {
-                    username: this.username,
-                    password: this.password,
-                };
-                this.$resource('/login').save(registrationForm, {emulateJSON: true})
-                    .then(() => {
-                        this.username = '';
-                        this.password = '';
-                    }, response => {
-                        this.username = response.body.message;
-                        // error callback
-                    });
-            }
-        }
+        data: () => ({})
     }
 </script>
-
-<style scoped>
-
-</style>

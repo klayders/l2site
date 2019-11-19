@@ -1,49 +1,130 @@
 <template>
-  <div>
-    <label>
-      <input type="text" placeholder="Введите логин" v-model="login"/>
-    </label>
-    <label>
-      <input type="text" placeholder="Введите пароль" v-model="password"/>
-    </label>
-    <label>
-      <input type="text" placeholder="Повторите пароль" v-model="passwordConfirm"/>
-    </label>
-    <!--    <div>-->
-    <!--      <div class="g-recaptcha" data-sitekey="6LdKbGAUAAAAAOsDMKHHT0_vKHBxk9dpvtp2_bQI" data-theme="dark"></div>-->
-    <!--    </div>-->
-    <input type="button" style="position: relative; width: 100px;" value="Зарегистрироваться" @click="save"/>
-  </div>
+  <v-form
+    ref="form"
+    v-model="valid"
+    lazy-validation
+  >
+    <v-text-field
+      v-model="login"
+      :counter="10"
+      :rules="loginRules"
+      label="Name"
+      required
+    ></v-text-field>
+
+    <v-text-field
+      v-model="password"
+      :counter="10"
+      :rules="passwordRules"
+      label="Password"
+      required
+    ></v-text-field>
+
+    <v-text-field
+      v-model="passwordConfirm"
+      :counter="10"
+      :rules="passwordConfirmRules"
+      label="Confirm password"
+      required
+    ></v-text-field>
+
+
+    <v-text-field
+      v-model="email"
+      :rules="emailRules"
+      label="E-mail"
+      required
+    ></v-text-field>
+
+    <v-checkbox
+      v-model="checkbox"
+      :rules="[v => !!v || 'You must agree to continue!']"
+      label="Do you agree?"
+      required
+    ></v-checkbox>
+
+    <v-btn
+      :disabled="!valid"
+      color="success"
+      class="mr-4"
+      @click="validate"
+    >
+      Save
+    </v-btn>
+
+    <v-btn
+      color="error"
+      class="mr-4"
+      @click="reset"
+    >
+      Reset Form
+    </v-btn>
+
+    <v-btn
+      color="warning"
+      @click="resetValidation"
+    >
+      Reset Validation
+    </v-btn>
+  </v-form>
 </template>
 
 <script>
     export default {
         name: "Registration",
-        data() {
-            return {
-                login: '',
-                password: '',
-                captcha: '',
-                passwordConfirm: ''
-            }
-        },
+        data: () => ({
+            valid: true,
+            login: '',
+            loginRules: [
+                v => !!v || 'Name is required',
+                v => (v && v.length >= 6) || 'Name must be more than 6 characters',
+            ],
+            password: '',
+            passwordRules: [
+                v => !!v || 'password is required',
+                v => (v && v.length >= 6) || 'Password must be more than 6 characters',
+            ],
+            passwordConfirm: '',
+            passwordConfirmRules: [
+                // TODO : add validation
+                // v => v !== password
+            ],
+            email: '',
+            emailRules: [
+                v => !!v || 'E-mail is required',
+                v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
+            ],
+            select: null,
+            checkbox: false,
+        }),
+
         methods: {
-            save() {
-                let registrationForm = {
-                    login: this.login,
-                    password: this.password,
-                    passwordConfirm: this.passwordConfirm,
-                    // captcha: this.captcha
-                };
-                registrationApi.save({}, registrationForm).then(() => {
-                    this.login = '';
-                    this.password = '';
-                }, response => {
-                    this.login = response.body.message;
-                    // error callback
-                });
-            }
-        }
+            validate() {
+                if (this.$refs.form.validate()) {
+                    this.snackbar = true;
+
+                    let registrationForm = {
+                        login: this.login,
+                        password: this.password,
+                        passwordConfirm: this.passwordConfirm,
+                        // captcha: this.captcha
+                    };
+                    this.$resource('/api/registration').save({}, registrationForm).then(() => {
+                        this.login = '';
+                        this.password = '';
+                    }, response => {
+                        this.login = response.body.message;
+                        // error callback
+                    });
+                }
+            },
+            reset() {
+                this.$refs.form.reset()
+            },
+            resetValidation() {
+                this.$refs.form.resetValidation()
+            },
+        },
     }
 </script>
 

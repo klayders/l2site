@@ -46,9 +46,9 @@ module.exports = {
           {
             loader: 'sass-loader',
             options: {
-              implementation: require('sass'),
-              fiber: require('fibers'),
-              indentedSyntax: true
+              sassOptions: {
+                indentedSyntax: true
+              }
             }
           }
         ]
