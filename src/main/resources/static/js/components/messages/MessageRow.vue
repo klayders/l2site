@@ -6,33 +6,28 @@
     </v-card-text>
     <v-card-actions>
       <v-btn small rounded @click="edit">
-        <v-icon>{{iconEdit}}</v-icon>
+        <v-icon>mdi-comment-edit</v-icon>
       </v-btn>
       <v-btn small rounded @click="del">
-        <v-icon>{{iconDel}}</v-icon>
+        <v-icon>mdi-delete</v-icon>
       </v-btn>
     </v-card-actions>
   </v-card>
 </template>
 
 <script>
-    import {mdiCommentEdit, mdiDelete} from '@mdi/js'
+    import {mapActions} from 'vuex'
 
     export default {
         name: "MessageRow",
-        props: ["message", "editMessage", "deleteMessage", "messages"],
-        data() {
-            return {
-                iconDel: mdiDelete,
-                iconEdit: mdiCommentEdit,
-            }
-        },
+        props: ["message", "editMessage"],
         methods: {
+            ...mapActions(['removeMessageAction']),
             edit() {
                 this.editMessage(this.message);
             },
             del() {
-                this.deleteMessage(this.message)
+                this.removeMessageAction(this.message)
             }
         }
     }

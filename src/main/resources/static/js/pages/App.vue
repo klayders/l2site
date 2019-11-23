@@ -7,13 +7,13 @@
       <span v-if="profile">{{profile.displayName}}</span>
 
       <v-btn v-if="profile" icon href="/logout">
-        <v-icon>{{ svgPath }}</v-icon>
+        <v-icon>mdi-exit-to-app</v-icon>
       </v-btn>
     </v-app-bar>
 
     <v-content>
       <v-container v-if="profile">
-        <message-list :messages="messages"/>
+        <message-list/>
       </v-container>
       <v-container v-else>
         Необходимо авторизоваться или зарегистрироваться
@@ -31,21 +31,15 @@
     import LoginForm from "../components/login/LoginForm.vue";
     import Registration from "../components/registration/Registration.vue";
     import CharacterList from "../components/character/CharacterList.vue";
-    import {mdiExitToApp} from '@mdi/js'
+    import {mapState} from 'vuex'
 
     export default {
         name: "App",
+        computed: mapState(["profile"]),
         components: {
             CharacterList,
             Registration,
             MessageList, LoginForm
-        },
-        data() {
-            return {
-                svgPath: mdiExitToApp,
-                messages: frontendData.messages,
-                profile: frontendData.profile
-            }
         }
     }
 </script>

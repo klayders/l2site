@@ -32,6 +32,7 @@
 </template>
 
 <script>
+    import loginApi from 'api/login'
 
     export default {
         name: 'App',
@@ -48,7 +49,7 @@
                     username: this.username,
                     password: this.password
                 };
-                this.$resource('/login').save(loginForm, {emulateJSON: true})
+                loginApi.authentication(loginForm)
                     .then(() => {
                         this.username = '';
                         this.password = '';

@@ -1,22 +1,20 @@
 <template>
   <v-layout align-space-around column>
-    <message-form :messages="messages" :messageAttr="message"/>
+    <message-form :messageAttr="message"/>
     <message-row v-for="message in sortMessages"
                  :key="message.id"
                  :message="message"
-                 :editMessage="editMessage"
-                 :deleteMessage="deleteMessage"
-                 :messages="messages"/>
+                 :editMessage="editMessage"/>
   </v-layout>
 </template>
 
 <script>
     import MessageRow from "./MessageRow.vue";
     import MessageForm from "./MessageForm.vue";
+    import {mapGetters} from 'vuex';
 
     export default {
         name: "MessageList",
-        props: ['messages'],
         components: {
             MessageRow, MessageForm
         },
@@ -25,22 +23,12 @@
                 message: null
             }
         },
-        computed: {
-            sortMessages() {
-                return this.messages.sort((a, b) => -(a.id - b.id))
-            }
-        },
+        computed: mapGetters(['sortMessages']),
         methods: {
             editMessage(message) {
                 this.message = message;
             },
-            deleteMessage(message) {
-                this.$resource('/message{/id}').remove({id: message.id}).then(result => {
-                    if (result.ok) {
-                        this.messages.splice(this.messages.indexOf(this.message), 1)
-                    }
-                })
-            }
+
         }
     }
 </script>

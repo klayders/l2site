@@ -70,6 +70,8 @@
 </template>
 
 <script>
+    import regApi from 'api/registration.js'
+
     export default {
         name: "Registration",
         data: () => ({
@@ -109,7 +111,7 @@
                         passwordConfirm: this.passwordConfirm,
                         // captcha: this.captcha
                     };
-                    this.$resource('/api/registration').save({}, registrationForm).then(() => {
+                    regApi.addNewUser(registrationForm).then(() => {
                         this.login = '';
                         this.password = '';
                     }, response => {
