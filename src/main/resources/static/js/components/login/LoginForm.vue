@@ -1,63 +1,62 @@
 <template>
-  <v-app id="inspire">
-    <v-content>
-      <v-container
-        class="fill-height"
-        fluid
-      >
-        <v-row
-          align="center"
-          justify="center"
-        >
-          <v-col
-            cols="12"
-            sm="8"
-            md="4"
-          >
-            <v-card class="elevation-12">
-              <v-toolbar
-                color="primary"
-                dark
-                flat
-              >
-                <v-toolbar-title>Login form</v-toolbar-title>
-                <v-spacer/>
-              </v-toolbar>
-              <v-card-text>
-                <v-form>
-                  <v-text-field
-                    label="Login"
-                    name="login"
-                    prepend-icon="mdiHuman"
-                    type="text"
-                  />
-
-                  <v-text-field
-                    id="password"
-                    label="Password"
-                    name="password"
-                    prepend-icon="lock"
-                    type="password"
-                  />
-                </v-form>
-              </v-card-text>
-              <v-card-actions>
-                <v-spacer/>
-                <v-btn color="primary">Login</v-btn>
-              </v-card-actions>
-            </v-card>
-          </v-col>
-        </v-row>
-      </v-container>
-    </v-content>
+  <v-app>
+    <v-card width="400" class="mx-auto mt-5">
+      <v-card-title class="pb-0">
+        <h1>Login</h1>
+      </v-card-title>
+      <v-card-text>
+        <v-form>
+          <v-text-field
+            label="Username"
+            prepend-icon="mdi-account-circle"
+            v-model="username"
+          />
+          <v-text-field
+            :type="showPassword ? 'text' : 'password'"
+            label="Password"
+            prepend-icon="mdi-lock"
+            :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
+            @click:append="showPassword = !showPassword"
+            v-model="password"
+          />
+        </v-form>
+      </v-card-text>
+      <v-divider></v-divider>
+      <v-card-actions>
+        <v-btn color="success">Register</v-btn>
+        <v-spacer></v-spacer>
+        <v-btn color="info" @click="authorization">Login</v-btn>
+      </v-card-actions>
+    </v-card>
   </v-app>
 </template>
 
 <script>
+
     export default {
-        props: {
-            source: String,
+        name: 'App',
+        data() {
+            return {
+                showPassword: false,
+                username: '',
+                password: ''
+            }
         },
-        data: () => ({})
+        methods: {
+            authorization() {
+                let loginForm = {
+                    username: this.username,
+                    password: this.password
+                };
+                this.$resource('/login').save(loginForm, {emulateJSON: true})
+                    .then(() => {
+                        this.username = '';
+                        this.password = '';
+                    }, response => {
+                        this.username = response.body.message;
+                        // error callback
+                    });
+            }
+        }
     }
 </script>
