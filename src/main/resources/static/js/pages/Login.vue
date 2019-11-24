@@ -1,5 +1,4 @@
 <template>
-  <v-app>
     <v-card width="400" class="mx-auto mt-5">
       <v-card-title class="pb-0">
         <h1>Login</h1>
@@ -28,7 +27,6 @@
         <v-btn color="info" @click="authorization">Login</v-btn>
       </v-card-actions>
     </v-card>
-  </v-app>
 </template>
 
 <script>
@@ -53,6 +51,7 @@
                     .then(() => {
                         this.username = '';
                         this.password = '';
+                        this.$router.push(this.$route.query.redirect || '/registration');
                     }, response => {
                         this.username = response.body.message;
                         // error callback
