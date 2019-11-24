@@ -4,43 +4,39 @@
       <v-toolbar-title>Lineage 2</v-toolbar-title>
       <v-spacer></v-spacer>
 
-      <span v-if="profile">{{profile.displayName}}</span>
+      <div v-if="profile">
+        <span>{{profile.displayName}}</span>
+        <v-btn icon href="/logout">
+          <v-icon>mdi-exit-to-app</v-icon>
+        </v-btn>
+      </div>
+      <div v-else>
+        <v-btn icon href="/login">
+          <v-icon>mdi-login-variant</v-icon>
+        </v-btn>
+      </div>
 
-      <v-btn v-if="profile" icon href="/logout">
-        <v-icon>mdi-exit-to-app</v-icon>
-      </v-btn>
     </v-app-bar>
 
     <v-content>
       <v-container v-if="profile">
-        <message-list/>
-      </v-container>
-      <v-container v-else>
-        Необходимо авторизоваться или зарегистрироваться
-        <login-form/>
-        <registration/>
+        <!--        <message-list/>-->
       </v-container>
 
-      <character-list/>
+
+      <!--      <character-list/>-->
+
     </v-content>
+    <router-view></router-view>
   </v-app>
 </template>
 
 <script>
-    import MessageList from "../components/messages/MessageList.vue";
-    import LoginForm from "../components/login/LoginForm.vue";
-    import Registration from "../components/registration/Registration.vue";
-    import CharacterList from "../components/character/CharacterList.vue";
     import {mapState} from 'vuex'
 
     export default {
         name: "App",
         computed: mapState(["profile"]),
-        components: {
-            CharacterList,
-            Registration,
-            MessageList, LoginForm
-        }
     }
 </script>
 
