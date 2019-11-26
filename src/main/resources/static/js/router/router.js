@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import MessageList from "../pages/MessageList.vue";
-import Login from "../pages/Login.vue";
-import Registration from "../pages/Registration.vue";
+import Login from "../components/auth/Login.vue";
+import Registration from "../components/auth/Registration.vue";
 import Profile from "../pages/Profile.vue";
 
 

@@ -1,6 +1,13 @@
 <template>
-  <v-content>
-    <v-card width="400" class="mx-auto mt-5">
+  <v-dialog v-model="dialog" width="500">
+
+    <template v-slot:activator="{ on }">
+      <v-btn icon v-on="on">
+        <v-icon>mdi-login-variant</v-icon>
+      </v-btn>
+    </template>
+
+    <v-card class="mx-auto mt-auto">
       <v-card-title class="pb-0">
         <h1>Login</h1>
       </v-card-title>
@@ -23,21 +30,26 @@
       </v-card-text>
       <v-divider></v-divider>
       <v-card-actions>
-        <v-btn color="success" href="/registration">Register</v-btn>
+        <registration></registration>
         <v-spacer></v-spacer>
         <v-btn color="info" @click="authorization">Login</v-btn>
       </v-card-actions>
     </v-card>
-  </v-content>
+  </v-dialog>
 </template>
 
 <script>
     import loginApi from 'api/login'
+    import Registration from "./Registration.vue";
 
     export default {
         name: 'App',
+        components: {
+            Registration
+        },
         data() {
             return {
+                dialog: false,
                 showPassword: false,
                 username: '',
                 password: ''
