@@ -17,6 +17,7 @@
             label="Username"
             prepend-icon="mdi-account-circle"
             v-model="username"
+            :rules="userNameRules"
           />
           <v-text-field
             :type="showPassword ? 'text' : 'password'"
@@ -52,7 +53,9 @@
                 dialog: false,
                 showPassword: false,
                 username: '',
-                password: ''
+                password: '',
+                userNameRules: [],
+                passwordRules: []
             }
         },
         methods: {
@@ -65,8 +68,13 @@
                     .then(() => {
                         this.username = '';
                         this.password = '';
-                        this.$router.push(this.$route.query.redirect || '/registration');
+                        this.dialog = false;
                     }, response => {
+                        this.userNameRules = ['Username or password is incorrect'];
+                        this.username = '';
+                        this.password = '';
+                        // Username or password is incorrect
+                        console.log(response);
                         this.username = response.body.message;
                         // error callback
                     });

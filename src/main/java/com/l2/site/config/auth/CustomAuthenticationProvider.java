@@ -20,8 +20,8 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Collections;
 import java.util.List;
 
-@Component
 @Slf4j
+@Component
 @AllArgsConstructor
 public class CustomAuthenticationProvider implements AuthenticationProvider {
 
@@ -40,6 +40,8 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
   public Authentication authenticate(Authentication authentication) throws AuthenticationException {
     String username = authentication.getPrincipal() + "";
     String password = authentication.getCredentials() + "";
+
+    log.info("authenticate: username={}", username);
 
     var account = accountService.findByl2Email(username);
 
