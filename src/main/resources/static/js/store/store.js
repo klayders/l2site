@@ -20,7 +20,7 @@ export default new Vuex.Store({
       ]
     },
     updateMessageMutation(state, message) {
-      const updateIndex = state.messages.findIndex(item => item.id === message.id)
+      const updateIndex = state.messages.findIndex(item => item.id === message.id);
       state.messages = [
         ...state.messages.splice(0, updateIndex),
         message,
@@ -28,7 +28,7 @@ export default new Vuex.Store({
       ]
     },
     removeMessageMutation(state, message) {
-      const deleteIndex = state.messages.findIndex(item => item.id === message.id)
+      const deleteIndex = state.messages.findIndex(item => item.id === message.id);
 
       if (deleteIndex > -1) {
         state.messages = [
@@ -42,12 +42,16 @@ export default new Vuex.Store({
     async addMessageAction({commit, state}, message) {
       const result = await messageApi.add(message);
       const data = await result.json();
-      const index = state.messages.findIndex(item => item.id === data.id);
-
-      if (index > -1) {
-        commit('updateMessageMutation', data)
+      if (state.messages == null) {
+        console.log('error write message')
       } else {
-        commit('addMessageMutation', data)
+        const index = state.messages.findIndex(item => item.id === data.id);
+
+        if (index > -1) {
+          commit('updateMessageMutation', data)
+        } else {
+          commit('addMessageMutation', data)
+        }
       }
     },
     async updateMessageAction({commit}, message) {
@@ -56,7 +60,7 @@ export default new Vuex.Store({
       commit('updateMessageMutation', data)
     },
     async removeMessageAction({commit}, message) {
-      const result = await messageApi.remove(message.id)
+      const result = await messageApi.remove(message.id);
 
       if (result.ok) {
         commit('removeMessageMutation', message)

@@ -1,20 +1,17 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import MessageList from "../pages/MessageList.vue";
-import Login from "../components/auth/Login.vue";
-import Registration from "../components/auth/Registration.vue";
 import Profile from "../pages/Profile.vue";
+import App from "../pages/App.vue";
 
 
 Vue.use(VueRouter);
 
 const routes = [
-  {path: '*', component: MessageList},
-  {path: '/', component: MessageList},
-  {path: '/login', component: Login},
-  {path: '/registration', component: Registration},
-  //TODO: убрать 'u', но там доступен маппинг
-  {path: '/uprofile', component: Profile},
+  {path: '*', component: App},
+  {path: '/messages', component: MessageList},
+  {path: '/profile', component: Profile},
+  // {path: '/registration', component: Registration},
 ];
 
 export default new VueRouter({

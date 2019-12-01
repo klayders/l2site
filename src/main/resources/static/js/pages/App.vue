@@ -3,14 +3,19 @@
 
     <v-app-bar app>
       <v-toolbar-title>
-        <v-btn outlined color="primary" href="/">Lineage 2</v-btn>
+        <v-btn text color="primary" href="/">Lineage 2</v-btn>
       </v-toolbar-title>
 
       <v-spacer></v-spacer>
 
-      <div v-if="profile">
+      <v-btn small text href="/messages">
+        messages
+      </v-btn>
 
-        <span>{{profile.displayName}}</span>
+      <div v-if="profile">
+        <v-btn small text href="/profile">
+          {{profile.displayName}}
+        </v-btn>
         <v-btn icon href="/logout">
           <v-icon>mdi-exit-to-app</v-icon>
         </v-btn>
