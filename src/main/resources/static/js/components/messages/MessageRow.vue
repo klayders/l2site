@@ -1,5 +1,5 @@
 <template>
-  <v-card shaped class="my-2 ">
+  <v-card shaped class="my-2 " color="rgb(0, 0, 0, 0.2)">
     <v-card-text primary>
       <i>({{message.id}})</i>
       {{message.text}} Дата: {{message.creationDate}}

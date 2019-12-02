@@ -1,5 +1,9 @@
 <template>
-  <v-app>
+  <v-app style="background: url('https://i.artfile.me/wallpaper/18-05-2019/2560x1600/video-igry-heavenly-sword-mech-devushka--1459272.jpg') no-repeat center center fixed;
+  -moz-background-size: 100%;
+  -webkit-background-size: 100%;
+  -o-background-size: 100%;
+  background-size: 100%;">
 
     <v-app-bar app>
       <v-toolbar-title>
@@ -49,7 +53,7 @@
 </script>
 
 <style scoped>
-  /*background: url('https://i.yapx.ru/EdgG6.gif') no-repeat center center fixed;;*/
+  /*background: url('https://i.yapx.ru/EdgG6.gif') no-repeat center center fixed;*/
   /*-moz-background-size: 100%;*/
   /*-webkit-background-size: 100%;*/
   /*-o-background-size: 100%;*/
