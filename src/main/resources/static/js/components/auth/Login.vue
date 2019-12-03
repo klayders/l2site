@@ -14,7 +14,7 @@
       <v-card-text>
         <v-form>
           <v-text-field
-            label="Username"
+            label="Login"
             prepend-icon="mdi-account-circle"
             v-model="username"
             :rules="userNameRules"

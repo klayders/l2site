@@ -26,49 +26,52 @@
         <v-window v-model="step">
           <v-window-item :value="1">
             <v-card-text>
-              <v-text-field
-                v-model="email"
-                :rules="emailRules"
-                label="E-mail"
-                required
-              ></v-text-field>
+
               <v-text-field
                 v-model="login"
                 :counter="10"
                 :rules="loginRules"
                 label="Login"
-                required
-              ></v-text-field>
-              <span class="caption grey--text text--darken-1">
-            This is the login you will use to login to your Vuetify account
-            </span>
-            </v-card-text>
-          </v-window-item>
+                hint="login from the site and the game"
+                persistent-hint
+                required>
+              </v-text-field>
 
-          <v-window-item :value="2">
-            <v-card-text>
+
+              <v-text-field
+                v-model="email"
+                :rules="emailRules"
+                label="E-mail"
+                hint="Input your email for restore password"
+                persistent-hint
+                required>
+              </v-text-field>
+
+
               <v-text-field
                 v-model="password"
                 :counter="10"
                 :rules="passwordRules"
                 label="Password"
-                required
-              ></v-text-field>
+                hint="Password from the site and the game"
+                persistent-hint
+                required>
+              </v-text-field>
+
 
               <v-text-field
                 v-model="passwordConfirm"
                 :counter="10"
                 :rules="passwordConfirmRules"
                 label="Confirm password"
-                required
-              ></v-text-field>
-              <span class="caption grey--text text--darken-1">
-            Please enter a password for your account
-          </span>
+                persistent-hint
+                required>
+              </v-text-field>
+
             </v-card-text>
           </v-window-item>
 
-          <v-window-item :value="3">
+          <v-window-item :value="2">
             <div class="pa-4 text-center">
               <v-img
                 class="mb-4"

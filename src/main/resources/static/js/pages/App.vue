@@ -21,7 +21,7 @@
           {{profile.displayName}}
         </v-btn>
         <v-btn icon href="/logout">
-          <v-icon>mdi-exit-to-app</v-icon>
+          <v-icon>mdi-logout</v-icon>
         </v-btn>
 
       </div>
