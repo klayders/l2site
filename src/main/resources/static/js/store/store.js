@@ -11,7 +11,8 @@ export default new Vuex.Store({
     news: frontendData.news,
   },
   getters: {
-    sortMessages: state => (state.messages || []).sort((a, b) => -(a.id - b.id))
+    sortMessages: state => (state.messages || []).sort((a, b) => -(a.id - b.id)),
+    sortNews: state => (state.news || []).sort((a, b) => -(a.id - b.id))
   },
   mutations: {
     addMessageMutation(state, message) {

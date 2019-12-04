@@ -1,7 +1,7 @@
 <template>
   <v-content>
     <v-layout align-space-around column>
-      <news-row v-for="news in sortedNews"
+      <news-row v-for="news in sortNews"
                 :key="news.id"
                 :news="news"/>
     </v-layout>
@@ -19,10 +19,10 @@
         },
         data() {
             return {
-                message: null
+                news: null
             }
         },
-        computed: mapGetters(['sortedNews']),
+        computed: mapGetters(['sortNews']),
         methods: {}
     }
 </script>

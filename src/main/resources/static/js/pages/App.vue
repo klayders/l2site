@@ -33,6 +33,12 @@
 
       </div>
     </v-app-bar>
+
+    <v-content>
+      <news-list></news-list>
+    </v-content>
+
+
     <v-footer app></v-footer>
     <router-view></router-view>
 
@@ -42,10 +48,12 @@
 <script>
     import {mapState} from 'vuex'
     import Login from "../components/auth/Login.vue";
+    import NewsList from "./NewsList.vue";
 
     export default {
         name: "App",
         components: {
+            NewsList,
             Login
         },
         computed: mapState(["profile"]),
