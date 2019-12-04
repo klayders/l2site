@@ -1,9 +1,9 @@
 import Vue from 'vue'
 
-const messages = Vue.resource('/message{/id}')
+const newsApi = Vue.resource('/api/v1/news{/id}')
 
 export default {
-  add: message => messages.save({}, message),
-  update: message => messages.update({id: message.id}, message),
-  remove: id => messages.remove({id})
+  add: message => newsApi.save({}, message),
+  update: message => newsApi.update({id: message.id}, message),
+  remove: id => newsApi.remove({id})
 }
