@@ -2,13 +2,14 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import MessageList from "../pages/MessageList.vue";
 import Profile from "../pages/Profile.vue";
-import App from "../pages/App.vue";
+import NewsList from "../pages/NewsList.vue";
 
 
 Vue.use(VueRouter);
 
 const routes = [
-  {path: '*', component: App},
+  {path: '*', component: NewsList},
+  {path: '/news', component: NewsList},
   {path: '/messages', component: MessageList},
   {path: '/profile', component: Profile},
   // {path: '/registration', component: Registration},

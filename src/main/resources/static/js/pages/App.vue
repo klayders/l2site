@@ -5,39 +5,7 @@
   -o-background-size: 100%;
   background-size: 100%;">
 
-    <v-app-bar app>
-      <v-toolbar-title>
-        <v-btn text color="primary" href="/">Lineage 2</v-btn>
-      </v-toolbar-title>
-
-      <v-spacer></v-spacer>
-
-      <v-btn small text href="/messages">
-        messages
-      </v-btn>
-
-      <div v-if="profile">
-        <v-btn small text href="/profile">
-          {{profile.displayName}}
-        </v-btn>
-        <v-btn icon href="/logout">
-          <v-icon>mdi-logout</v-icon>
-        </v-btn>
-
-      </div>
-      <div v-else>
-
-        <v-toolbar-items>
-          <login></login>
-        </v-toolbar-items>
-
-      </div>
-    </v-app-bar>
-
-    <v-content>
-      <news-list></news-list>
-    </v-content>
-
+    <menu-bar></menu-bar>
 
     <v-footer app></v-footer>
     <router-view></router-view>
@@ -46,17 +14,11 @@
 </template>
 
 <script>
-    import {mapState} from 'vuex'
-    import Login from "../components/auth/Login.vue";
-    import NewsList from "./NewsList.vue";
+    import MenuBar from "../components/menu/MenuBar.vue";
 
     export default {
-        name: "App",
-        components: {
-            NewsList,
-            Login
-        },
-        computed: mapState(["profile"]),
+        name: "Main-App",
+        components: {MenuBar},
     }
 </script>
 

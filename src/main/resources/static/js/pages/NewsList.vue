@@ -17,11 +17,6 @@
         components: {
             NewsRow
         },
-        data() {
-            return {
-                news: null
-            }
-        },
         computed: mapGetters(['sortNews']),
         methods: {}
     }
