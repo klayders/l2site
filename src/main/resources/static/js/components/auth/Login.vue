@@ -2,7 +2,8 @@
   <v-dialog v-model="dialog" width="500">
 
     <template v-slot:activator="{ on }">
-      <v-btn icon v-on="on">
+      <v-btn small text v-on="on">
+        <span class="success">Sign in</span>
         <v-icon>mdi-login-variant</v-icon>
       </v-btn>
     </template>

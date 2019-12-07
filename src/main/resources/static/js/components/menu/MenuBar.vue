@@ -24,7 +24,8 @@
       <v-btn small text href="/profile">
         {{profile.displayName}}
       </v-btn>
-      <v-btn icon href="/logout">
+      <v-btn small text href="/logout">
+        <span class="error">Sign out</span>
         <v-icon>mdi-logout</v-icon>
       </v-btn>
 
