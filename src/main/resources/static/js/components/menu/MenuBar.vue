@@ -6,6 +6,16 @@
 
     <v-spacer></v-spacer>
 
+
+    <v-btn small text href="https://discord.gg/aXQFmJ">
+      Community
+    </v-btn>
+    <v-btn small text href="/statistics">
+      Statistics
+    </v-btn>
+    <v-btn small text href="/download">
+      Download
+    </v-btn>
     <v-btn small text href="/messages">
       messages
     </v-btn>
