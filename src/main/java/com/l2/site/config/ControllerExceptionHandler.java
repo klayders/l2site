@@ -1,5 +1,6 @@
 package com.l2.site.config;
 
+import com.l2.site.exception.JwtTokenException;
 import com.l2.site.exception.RegistrationException;
 import com.l2.site.model.ErrorResponse;
 import lombok.AllArgsConstructor;
@@ -28,6 +29,16 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
     var message = exception.getMessage();
     log.warn("registrationException: exception={}, request url={}, query={}", message, request.getRequestURI(), request.getQueryString());
     return ErrorResponse.of(exception.getClass().getSimpleName(), message);
+  }
+
+  @ResponseStatus(value = HttpStatus.FORBIDDEN)
+  @ExceptionHandler(value = JwtTokenException.class)
+  public ErrorResponse jwtException(HttpServletRequest request,
+                                    JwtTokenException exception) {
+//    String message = context.getMessage(exception.getMessage(), null, Locale.getDefault());
+    var message = exception.getMessage();
+    log.warn("jwtException: exception={}, request url={}, query={}", message, request.getRequestURI(), request.getQueryString());
+    return ErrorResponse.of(null, message);
   }
 
 

@@ -31,14 +31,14 @@
 
 <script>
     import Login from "../auth/Login.vue";
-    import {mapState} from 'vuex'
+    import {mapGetters} from 'vuex'
 
     export default {
         name: "MenuBar",
         components: {
             Login
         },
-        computed: mapState(["profile"]),
+        computed: mapGetters(["profile"]),
     }
 </script>
 

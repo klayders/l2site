@@ -15,10 +15,18 @@
 
 <script>
     import MenuBar from "../components/menu/MenuBar.vue";
+    import {mapActions, mapGetters} from 'vuex';
 
     export default {
         name: "Main-App",
         components: {MenuBar},
+        computed: mapGetters(['getProfile']),
+        methods: {
+            ...mapActions(['initProfileAction'])
+        },
+        mounted() {
+            this.initProfileAction();
+        }
     }
 </script>
 

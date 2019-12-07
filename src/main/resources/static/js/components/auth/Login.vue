@@ -42,6 +42,7 @@
 <script>
     import loginApi from 'api/login'
     import Registration from "./Registration.vue";
+    import {mapActions} from 'vuex'
 
     export default {
         name: 'App',
@@ -59,6 +60,8 @@
             }
         },
         methods: {
+            ...mapActions(['loginAction']),
+
             authorization() {
                 let loginForm = {
                     username: this.username,
@@ -68,6 +71,9 @@
                     .then(() => {
                         this.username = '';
                         this.password = '';
+
+                        this.loginAction();
+
                         this.dialog = false;
                     }, response => {
                         this.userNameRules = ['Username or password is incorrect'];

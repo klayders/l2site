@@ -13,7 +13,7 @@
 <script>
     import MessageRow from "../components/messages/MessageRow.vue";
     import MessageForm from "../components/messages/MessageForm.vue";
-    import {mapGetters} from 'vuex';
+    import {mapActions, mapGetters} from 'vuex';
 
     export default {
         name: "MessageList",
@@ -27,10 +27,13 @@
         },
         computed: mapGetters(['sortMessages']),
         methods: {
+            ...mapActions(['initMessagesAction']),
             editMessage(message) {
                 this.message = message;
             },
-
+        },
+        mounted() {
+            this.initMessagesAction();
         }
     }
 </script>

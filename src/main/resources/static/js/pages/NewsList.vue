@@ -10,7 +10,7 @@
 
 <script>
     import NewsRow from "../components/news/NewsRow.vue";
-    import {mapGetters} from 'vuex';
+    import {mapActions, mapGetters} from 'vuex';
 
     export default {
         name: "NewsList",
@@ -18,7 +18,12 @@
             NewsRow
         },
         computed: mapGetters(['sortNews']),
-        methods: {}
+        methods: {
+            ...mapActions(['initNewsAction'])
+        },
+        mounted() {
+            this.initNewsAction();
+        }
     }
 </script>
 

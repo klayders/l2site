@@ -1,10 +1,14 @@
 package com.l2.site.api;
 
 import com.l2.site.account.AccountService;
-import com.l2.site.model.account.Account;
 import com.l2.site.model.account.AccountSnapshot;
+import com.l2.site.model.jwt.CurrentUser;
+import com.l2.site.model.jwt.JwtUser;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -30,19 +34,9 @@ public class AccountController {
     return accountService.getAccountById(login);
   }
 
-  @PostMapping
-  public AccountSnapshot doIt(@RequestParam String login, @RequestParam String password) {
-    var accounts = new Account();
-    accounts.setLogin(login);
-    accounts.setPassword(password);
-    return accountService.save(accounts);
-  }
 
-  @DeleteMapping
-  public AccountSnapshot ss(@RequestParam String login, @RequestParam String password) {
-    var accounts = new Account();
-    accounts.setLogin(login);
-    accounts.setPassword(password);
-    return accountService.save(accounts);
+  @GetMapping("/profile")
+  public JwtUser profile(@CurrentUser JwtUser jwtUser) {
+    return jwtUser;
   }
 }
