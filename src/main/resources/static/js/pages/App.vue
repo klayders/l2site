@@ -1,6 +1,6 @@
 <template>
   <v-app
-    style="background: url('https://i.artfile.me/wallpaper/18-05-2019/2560x1600/video-igry-heavenly-sword-mech-devushka--1459272.jpg') no-repeat center center fixed;
+    style="background: url('js/assets/DePfho.jpg') no-repeat center center fixed;
   background-size: cover;
 ">
 

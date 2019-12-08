@@ -9,6 +9,14 @@ export default new Vuetify({
     iconfont: 'mdi',
   },
   theme: {
+    options: {
+      customProperties: true,
+    },
+    themes: {
+      dark: {
+        background: '#ff3642',
+      },
+    },
     dark: true,
-  }
+  },
 })

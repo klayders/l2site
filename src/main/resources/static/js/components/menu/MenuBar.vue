@@ -1,43 +1,96 @@
 <template>
-  <v-app-bar app>
-    <v-toolbar-title>
-      <v-btn text color="primary" href="/">Lineage 2</v-btn>
-    </v-toolbar-title>
+  <nav>
+    <v-app-bar app color="brown darken-4">
+      <!--      https://i.ytimg.com/vi/C4z6mpFOvdI/maxresdefault.jpg-->
+      <v-img
+        class="mx-2"
+        src="js/assets/logo.png"
+        max-height="40"
+        max-width="40"
+        contain
+      ></v-img>
 
-    <v-spacer></v-spacer>
+      <v-toolbar-title>
+        <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
+      </v-toolbar-title>
+
+      <v-spacer></v-spacer>
 
 
-    <v-btn small text href="https://discord.gg/aXQFmJ">
-      Community
-    </v-btn>
-    <v-btn small text href="/statistics">
-      Statistics
-    </v-btn>
-    <v-btn small text href="/download">
-      Download
-    </v-btn>
-    <v-btn small text href="/messages">
-      messages
-    </v-btn>
-
-    <div v-if="profile">
-      <v-btn small text href="/profile">
-        {{profile.displayName}}
+      <v-btn small text href="https://discord.gg/aXQFmJ">
+        Community
       </v-btn>
-      <v-btn small text href="/logout">
-        <span class="error">Sign out</span>
-        <v-icon>mdi-logout</v-icon>
+      <v-btn small text href="/statistics">
+        Statistics
+      </v-btn>
+      <v-btn small text href="/download">
+        Download
+      </v-btn>
+      <v-btn small text href="/messages">
+        messages
       </v-btn>
 
-    </div>
-    <div v-else>
+      <div v-if="profile">
+        <v-btn small text href="/profile">
+          {{profile.displayName}}
+        </v-btn>
+        <v-btn small text href="/logout">
+          <span class="error">Sign out</span>
+          <v-icon>mdi-logout</v-icon>
+        </v-btn>
+      </div>
+      <div v-else>
+        <v-toolbar-items>
+          <login></login>
+        </v-toolbar-items>
+      </div>
+    </v-app-bar>
 
-      <v-toolbar-items>
-        <login></login>
-      </v-toolbar-items>
 
-    </div>
-  </v-app-bar>
+    <v-navigation-drawer app expand-on-hover v-model="drawer">
+      <v-img :aspect-ratio="16/9" src="js/assets/nav.jpg">
+        <v-list-item>
+          <v-list-item-avatar>
+            <!--          <v-img-->
+            <!--            src=""></v-img>-->
+          </v-list-item-avatar>
+
+          <v-list-item-title v-if="profile">
+            {{profile.displayName}}
+          </v-list-item-title>
+          <v-list-item-title v-else>
+            Welcome
+          </v-list-item-title>
+        </v-list-item>
+      </v-img>
+
+      <v-divider></v-divider>
+
+
+      <v-list dense>
+        <v-list-item
+          v-for="item in items"
+          :key="item.title"
+          link
+        >
+          <v-list-item-icon>
+            <v-icon>{{ item.icon }}</v-icon>
+          </v-list-item-icon>
+
+          <v-list-item-content>
+            <router-link :to="item.route" class="router-conf">
+
+              <v-list-item-title>
+                {{ item.title }}
+              </v-list-item-title>
+            </router-link>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list>
+
+    </v-navigation-drawer>
+
+  </nav>
 </template>
 
 <script>
@@ -50,9 +103,31 @@
             Login
         },
         computed: mapGetters(["profile"]),
+        data() {
+            return {
+                drawer: false,
+                items: [
+                    {title: 'Home', icon: 'mdi-home-city', route: '/'},
+                    {title: 'My Account', icon: 'mdi-account', route: '/profile'},
+                    {title: 'Users', icon: 'mdi-account-group-outline', route: '/'},
+                ],
+            }
+        },
     }
 </script>
 
 <style scoped>
+  .router-conf {
+    color: inherit;
+    text-decoration: none;
+  }
 
+  .v-navigation-drawer {
+    transition: none !important;
+  }
+
+  .lightbox {
+    box-shadow: 0 0 20px inset rgba(0, 0, 0, 0.2);
+    background-image: linear-gradient(to top, rgba(0, 0, 0, 0.4) 0%, transparent 72px);
+  }
 </style>
