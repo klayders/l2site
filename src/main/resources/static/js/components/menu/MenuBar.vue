@@ -23,12 +23,12 @@
       <v-btn small text href="/statistics">
         Statistics
       </v-btn>
-      <v-btn small text href="/download">
-        Download
+      <v-btn icon text href="/download">
+        <v-icon>mdi-cloud-download</v-icon>
       </v-btn>
-      <v-btn small text href="/messages">
-        messages
-      </v-btn>
+      <!--      <v-btn small text href="/messages">-->
+      <!--        messages-->
+      <!--      </v-btn>-->
 
       <div v-if="profile">
         <v-btn small text href="/profile">
