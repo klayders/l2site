@@ -8,7 +8,7 @@
     </template>
 
     <social-sharing url="https://localhost:9000/"
-                    title="Lineage 2 Interlude"
+                    :title="itm.title"
                     description="Server with rate x1 , adena x10, spoil x2"
                     quote="Vue is a progressive framework for building user interfaces."
                     hashtags="interlude,lineage2"
@@ -24,6 +24,7 @@
               </v-icon>
             </v-btn>
           </network>
+
           <network network="vk">
             <v-btn icon small>
               <v-icon>
@@ -39,6 +40,7 @@
               </v-icon>
             </v-btn>
           </network>
+
           <network network="twitter">
             <v-btn icon small>
               <v-icon>
@@ -46,6 +48,7 @@
               </v-icon>
             </v-btn>
           </network>
+
           <network network="telegram">
             <v-btn icon small>
               <v-icon>
@@ -53,6 +56,7 @@
               </v-icon>
             </v-btn>
           </network>
+
           <network network="odnoklassniki">
             <v-btn icon small>
               <v-icon>
@@ -60,6 +64,7 @@
               </v-icon>
             </v-btn>
           </network>
+
           <network network="reddit">
             <v-btn icon small>
               <v-icon>
@@ -67,6 +72,7 @@
               </v-icon>
             </v-btn>
           </network>
+
           <network network="skype">
             <v-btn icon small>
               <v-icon>
@@ -74,11 +80,7 @@
               </v-icon>
             </v-btn>
           </network>
-          <!--      TODO: try use v-for-->
-          <!--      <div v-for="social in socials"-->
-          <!--           :key="social.shareWith">-->
-          <!--        {{social.title}}-->
-          <!--      </div>-->
+
         </v-card>
       </div>
     </social-sharing>
@@ -92,23 +94,7 @@
         data() {
             return {
                 dialog: false,
-                socials: [
-                    {shareWith: 'whatsapp', title: 'WhatsApp'},
-                    {shareWith: 'email', title: 'Email'},
-                    {shareWith: 'facebook', title: 'Facebook'},
-                    {shareWith: 'googleplus', title: 'GooglePlus+'},
-                    {shareWith: 'line', title: 'Line'},
-                    {shareWith: 'odnoklassniki', title: 'Odnoklassniki'},
-                    {shareWith: 'pinterest', title: 'Pinterest'},
-                    {shareWith: 'linkedin', title: 'LinkedIn'},
-                    {shareWith: 'skype', title: 'Skype'},
-                    {shareWith: 'sms', title: 'SmS'},
-                    {shareWith: 'telegram', title: 'Telegram'},
-                    {shareWith: 'twitter', title: 'Twitter'},
-                    {shareWith: 'vk', title: 'Vkontakte'},
-                    {shareWith: 'weibo', title: 'Weibo'},
-                    {shareWith: 'reddit', title: 'Reddit'},
-                ],
+                itm: {title: "from pojo"},
             }
         },
     }
@@ -117,3 +103,29 @@
 <style scoped>
 
 </style>
+
+
+<!--      TODO: try use v-for-->
+<!--      <div v-for="social in socials"-->
+<!--           :key="social.shareWith">-->
+<!--        {{social.title}}-->
+<!--      </div>-->
+
+
+// socials: [
+//     {shareWith: 'whatsapp', title: 'WhatsApp'},
+//     {shareWith: 'email', title: 'Email'},
+//     {shareWith: 'facebook', title: 'Facebook'},
+//     {shareWith: 'googleplus', title: 'GooglePlus+'},
+//     {shareWith: 'line', title: 'Line'},
+//     {shareWith: 'odnoklassniki', title: 'Odnoklassniki'},
+//     {shareWith: 'pinterest', title: 'Pinterest'},
+//     {shareWith: 'linkedin', title: 'LinkedIn'},
+//     {shareWith: 'skype', title: 'Skype'},
+//     {shareWith: 'sms', title: 'SmS'},
+//     {shareWith: 'telegram', title: 'Telegram'},
+//     {shareWith: 'twitter', title: 'Twitter'},
+//     {shareWith: 'vk', title: 'Vkontakte'},
+//     {shareWith: 'weibo', title: 'Weibo'},
+//     {shareWith: 'reddit', title: 'Reddit'},
+// ],
