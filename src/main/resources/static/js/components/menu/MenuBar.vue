@@ -41,7 +41,7 @@
       </div>
       <div v-else>
         <v-toolbar-items>
-          <login></login>
+          <sign-in></sign-in>
         </v-toolbar-items>
       </div>
     </v-app-bar>
@@ -94,13 +94,13 @@
 </template>
 
 <script>
-    import Login from "../auth/Login.vue";
     import {mapGetters} from 'vuex'
+    import SignIn from "../auth/SignIn.vue";
 
     export default {
         name: "MenuBar",
         components: {
-            Login
+            SignIn,
         },
         computed: mapGetters(["profile"]),
         data() {
@@ -108,7 +108,7 @@
                 drawer: false,
                 items: [
                     {title: 'Home', icon: 'mdi-home-city', route: '/'},
-                    {title: 'My Account', icon: 'mdi-account', route: '/profile'},
+                    {title: 'My profile', icon: 'mdi-account', route: '/profile'},
                     {title: 'Users', icon: 'mdi-account-group-outline', route: '/'},
                 ],
             }

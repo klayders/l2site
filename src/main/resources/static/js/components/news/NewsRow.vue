@@ -20,9 +20,7 @@
     </v-card-text>
 
     <v-card-actions>
-      <v-btn color="orange" text>
-        Share
-      </v-btn>
+      <social-helper></social-helper>
 
       <v-btn color="orange" text>
         Explore
@@ -33,8 +31,11 @@
 </template>
 
 <script>
+    import SocialHelper from "../social/SocialHelper.vue";
+
     export default {
         name: "NewsRow",
+        components: {SocialHelper},
         props: ["news"],
         methods: {
         }

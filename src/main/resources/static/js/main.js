@@ -7,6 +7,8 @@ import store from "./store/store";
 import '@babel/polyfill'
 import 'vuetify/dist/vuetify.min.css'
 
+let SocialSharing = require('vue-social-sharing');
+Vue.use(SocialSharing);
 
 new Vue({
   store,

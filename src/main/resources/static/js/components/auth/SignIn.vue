@@ -46,7 +46,7 @@
     import {mapActions} from 'vuex'
 
     export default {
-        name: 'App',
+        name: 'SignIn',
         components: {
             Registration
         },
