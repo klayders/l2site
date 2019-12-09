@@ -12,7 +12,9 @@
 
         <v-card-actions>
           <v-container>
-            <span>Download client from </span>
+            <span>
+              {{$t('downloadClient')}}
+            </span>
             <v-btn text :href="link.client">
               {{link.title}}
             </v-btn>

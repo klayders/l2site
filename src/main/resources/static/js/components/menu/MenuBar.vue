@@ -16,12 +16,19 @@
 
       <v-spacer></v-spacer>
 
+      <!--        <flag iso="us"></flag>-->
 
+      <v-btn icon @click="setLocale('en')">
+        EN
+      </v-btn>
+      <v-btn icon @click="setLocale('ru')">
+        RU
+      </v-btn>
       <v-btn small text href="https://discord.gg/aXQFmJ">
-        Community
+        {{$t('community')}}
       </v-btn>
       <v-btn small text href="/statistics">
-        Statistics
+        {{$t('statistics')}}
       </v-btn>
       <v-btn icon text href="/download">
         <v-icon>mdi-cloud-download</v-icon>
@@ -35,7 +42,7 @@
           {{profile.displayName}}
         </v-btn>
         <v-btn small text href="/logout">
-          <span class="error">Sign out</span>
+          <span class="error">{{$t('signOut')}}</span>
           <v-icon>mdi-logout</v-icon>
         </v-btn>
       </div>
@@ -81,7 +88,7 @@
             <router-link :to="item.route" class="router-conf">
 
               <v-list-item-title>
-                {{ item.title }}
+                {{$t(item.title)}}
               </v-list-item-title>
             </router-link>
           </v-list-item-content>
@@ -96,6 +103,7 @@
 <script>
     import {mapGetters} from 'vuex'
     import SignIn from "../auth/SignIn.vue";
+    import {i18n} from "../../plugin/i18n";
 
     export default {
         name: "MenuBar",
@@ -107,12 +115,17 @@
             return {
                 drawer: false,
                 items: [
-                    {title: 'Home', icon: 'mdi-home-city', route: '/'},
-                    {title: 'My profile', icon: 'mdi-account', route: '/profile'},
-                    {title: 'Users', icon: 'mdi-account-group-outline', route: '/'},
+                    {title: 'home', icon: 'mdi-home-city', route: '/'},
+                    {title: 'profile', icon: 'mdi-account', route: '/profile'},
+                    {title: 'users', icon: 'mdi-account-group-outline', route: '/'},
                 ],
             }
         },
+        methods: {
+            setLocale(locale) {
+                i18n.locale = locale;
+            }
+        }
     }
 </script>
 
