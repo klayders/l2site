@@ -3,7 +3,7 @@
 
     <template v-slot:activator="{ on }">
       <v-btn color="success" v-on="on">
-        Register
+        {{$t('register')}}
       </v-btn>
     </template>
     <v-form
@@ -27,22 +27,23 @@
           <v-window-item :value="1">
             <v-card-text>
 
+
               <v-text-field
-                v-model="login"
-                :counter="10"
-                :rules="loginRules"
-                label="Login"
-                hint="login from the site and the game"
+                v-model="email"
+                :rules="emailRules"
+                :label="$t('email')"
+                :hint="$t('inputEmail')"
                 persistent-hint
                 required>
               </v-text-field>
 
 
               <v-text-field
-                v-model="email"
-                :rules="emailRules"
-                label="E-mail"
-                hint="Input your email for restore password"
+                v-model="login"
+                :counter="14"
+                :rules="loginRules"
+                :label="$t('login')"
+                :hint="$t('inputLogin')"
                 persistent-hint
                 required>
               </v-text-field>
@@ -50,10 +51,13 @@
 
               <v-text-field
                 v-model="password"
-                :counter="10"
+                :counter="16"
                 :rules="passwordRules"
-                label="Password"
-                hint="Password from the site and the game"
+                :label="$t('password')"
+                :hint="$t('inputPassword')"
+                :type="showPassword ? 'text' : 'password'"
+                :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
+                @click:append="showPassword = !showPassword"
                 persistent-hint
                 required>
               </v-text-field>
@@ -61,9 +65,12 @@
 
               <v-text-field
                 v-model="passwordConfirm"
-                :counter="10"
-                :rules="passwordConfirmRules"
-                label="Confirm password"
+                :counter="16"
+                :rules="[passwordConfirmationRule]"
+                :label="$t('confirmPassword')"
+                :type="showConfirmPassword ? 'text' : 'password'"
+                :append-icon="showConfirmPassword ? 'mdi-eye' : 'mdi-eye-off'"
+                @click:append="showConfirmPassword = !showConfirmPassword"
                 persistent-hint
                 required>
               </v-text-field>
@@ -113,38 +120,40 @@
 <script>
     import regApi from 'api/registration.js'
 
-
     export default {
         name: "Registration",
-        data: () => ({
-            valid: true,
-            login: '',
-            loginRules: [
-                v => !!v || 'Name is required',
-                v => (v && v.length >= 6) || 'Name must be more than 6 characters',
-            ],
-            password: '',
-            passwordRules: [
-                v => !!v || 'password is required',
-                v => (v && v.length >= 6) || 'Password must be more than 6 characters',
-            ],
-            passwordConfirm: '',
-            passwordConfirmRules: [
-                // TODO : add validation
-                // v => v !== password
-            ],
-            email: '',
-            emailRules: [
-                v => !!v || 'E-mail is required',
-                v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
-            ],
-            select: null,
-            checkbox: false,
-            dialog: false,
-            step: 1,
-        }),
+        data() {
+            return {
+                valid: true,
+                login: '',
+                showPassword: false,
+                showConfirmPassword: false,
+                loginRules: [
+                    v => !!v || this.$i18n.t('loginRequired'),
+                    v => /^[A-Za-z0-9]{4,14}$/.test(v) || this.$i18n.t('loginRegexpError'),
+                ],
+                password: '',
+                passwordRules: [
+                    v => !!v || this.$i18n.t('passwordRequired'),
+                    v => /^[A-Za-z0-9]{6,16}$/.test(v) || this.$i18n.t('passwordRegexpError'),
+                ],
+                passwordConfirm: '',
+                email: '',
+                emailRules: [
+                    v => !!v || this.$i18n.t('emailRequired'),
+                    v => /.+@.+\..+/.test(v) || this.$i18n.t('emailNotValid'),
+                ],
+                select: null,
+                checkbox: false,
+                dialog: false,
+                step: 1,
+            }
+        },
 
         computed: {
+            passwordConfirmationRule() {
+                return () => (this.password === this.passwordConfirm) || 'Password must match'
+            },
             currentTitle() {
                 switch (this.step) {
                     case 1:
@@ -176,12 +185,6 @@
                     });
                 }
             },
-            // reset() {
-            //     this.$refs.form.reset()
-            // },
-            // resetValidation() {
-            //     this.$refs.form.resetValidation()
-            // },
         },
     }
 </script>

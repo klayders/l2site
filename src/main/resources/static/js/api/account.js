@@ -1,7 +1,7 @@
 import Vue from 'vue'
 
-const newsApi = Vue.resource('/api/v1/account/profile');
+const profileApi = Vue.resource('/api/v1/account/profile');
 
 export default {
-  init: () => newsApi.get(),
+  init: () => profileApi.get(),
 }

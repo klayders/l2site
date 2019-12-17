@@ -42,7 +42,7 @@
           {{profile.displayName}}
         </v-btn>
         <v-btn small text href="/logout">
-          <span class="error">{{$t('signOut')}}</span>
+          <span>{{$t('signOut')}}</span>
           <v-icon>mdi-logout</v-icon>
         </v-btn>
       </div>

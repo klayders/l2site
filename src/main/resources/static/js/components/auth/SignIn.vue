@@ -3,26 +3,26 @@
 
     <template v-slot:activator="{ on }">
       <v-btn small text v-on="on">
-        <span class="success">Sign in</span>
+        <span>{{$t('signIn')}}</span>
         <v-icon>mdi-login-variant</v-icon>
       </v-btn>
     </template>
 
     <v-card class="mx-auto mt-auto">
       <v-card-title class="pb-0">
-        <h1>Login</h1>
+        <h1>{{$t('login')}}</h1>
       </v-card-title>
       <v-card-text>
         <v-form>
           <v-text-field
-            label="Login"
+            :label="$t('email')"
             prepend-icon="mdi-account-circle"
             v-model="username"
-            :rules="userNameRules"
+            :rules="emailRules"
           />
           <v-text-field
             :type="showPassword ? 'text' : 'password'"
-            label="Password"
+            :label="$t('password')"
             prepend-icon="mdi-lock"
             :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
             @click:append="showPassword = !showPassword"
@@ -34,7 +34,7 @@
       <v-card-actions>
         <registration></registration>
         <v-spacer></v-spacer>
-        <v-btn color="info" @click="authorization">Login</v-btn>
+        <v-btn color="info" @click="authorization">{{$t('login')}}</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
@@ -56,7 +56,10 @@
                 showPassword: false,
                 username: '',
                 password: '',
-                userNameRules: [],
+                emailRules: [
+                    v => !!v || this.$i18n.t('emailRequired'),
+                    v => /.+@.+\..+/.test(v) || this.$i18n.t('emailNotValid'),
+                ],
                 passwordRules: []
             }
         },
@@ -77,11 +80,10 @@
 
                         this.dialog = false;
                     }, response => {
-                        this.userNameRules = ['Username or password is incorrect'];
+                        this.emailRules = [(this.$i18n.t('loginError'))];
                         this.username = '';
                         this.password = '';
                         // Username or password is incorrect
-                        console.log(response);
                         this.username = response.body.message;
                         // error callback
                     });

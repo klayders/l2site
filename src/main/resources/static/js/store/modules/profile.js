@@ -24,7 +24,6 @@ export default {
     async loginAction({commit}) {
       commit('updToken');
       await updProfile(commit);
-
     },
     async initProfileAction({commit, state}) {
       if (!!state.token) {
@@ -35,9 +34,16 @@ export default {
 };
 
 async function updProfile(commit) {
-  const result = await accountApi.init();
-  const data = await result.json();
-  commit('initProfile', data)
+  try {
+    let result = await accountApi.init();
+    const data = await result.json();
+    commit('initProfile', data)
+  } catch {
+    deleteAllCookies();
+
+    console.log('error fetch profile');
+  }
+
 }
 
 function getCookie() {
@@ -54,4 +60,15 @@ function getCookie() {
     }
   }
   return "";
+}
+
+function deleteAllCookies() {
+  const cookies = document.cookie.split(";");
+
+  for (let i = 0; i < cookies.length; i++) {
+    var cookie = cookies[i];
+    var eqPos = cookie.indexOf("=");
+    var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+    document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+  }
 }
