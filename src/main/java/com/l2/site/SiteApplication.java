@@ -8,7 +8,6 @@ import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfi
 @SpringBootApplication(exclude = {SecurityAutoConfiguration.class, RepositoryRestMvcAutoConfiguration.class})
 public class SiteApplication {
 
-
   public static void main(String[] args) {
 		SpringApplication.run(SiteApplication.class, args);
 	}
