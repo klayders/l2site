@@ -1,12 +1,12 @@
 package com.l2.site.model.account;
 
-import com.l2.site.model.characters.Characters;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
-import java.util.Set;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
 @Data
@@ -26,6 +26,6 @@ public class Account {
   private String l2email;
   private String privatekey;
 
-  @OneToMany(mappedBy = "accounts", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-  private Set<Characters> characters;
+//  @OneToMany(mappedBy = "accounts", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//  private Set<Characters> characters;
 }

@@ -1,14 +1,13 @@
 package com.l2.site.model.characters;
 
-import com.l2.site.model.account.Account;
-import com.l2.site.model.item.Items;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Type;
 
-import javax.persistence.*;
-import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
 @Data
 @Entity
@@ -18,12 +17,12 @@ public class Characters {
   @Id
   private int obj_Id;
 
-  @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "account_name")
-  private Account accounts;
+//  @ManyToOne(fetch = FetchType.LAZY)
+//  @JoinColumn(name = "account_name")
+//  private Account accounts;
 
-  @OneToMany(mappedBy = "characters", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-  private List<Items> items;
+//  @OneToMany(mappedBy = "characters", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//  private List<Items> items;
 
   private String char_name;
   @Column(columnDefinition = "TINYINT")

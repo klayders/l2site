@@ -25,8 +25,8 @@
 
         <v-window v-model="step">
           <v-window-item :value="1">
-            <v-card-text>
 
+            <v-card-text>
 
               <v-text-field
                 v-model="email"
@@ -78,7 +78,20 @@
             </v-card-text>
           </v-window-item>
 
+
           <v-window-item :value="2">
+            <div class="pa-4 text-center">
+              <vue-recaptcha
+                sitekey="6LdKbGAUAAAAAOsDMKHHT0_vKHBxk9dpvtp2_bQI"
+                :loadRecaptchaScript="true"
+                ref="recaptcha"
+                @verify="onVerify()">
+              </vue-recaptcha>
+            </div>
+          </v-window-item>
+
+
+          <v-window-item :value="3">
             <div class="pa-4 text-center">
               <v-img
                 class="mb-4"
@@ -119,9 +132,11 @@
 
 <script>
     import regApi from 'api/registration.js'
+    import VueRecaptcha from 'vue-recaptcha';
 
     export default {
         name: "Registration",
+        components: {VueRecaptcha},
         data() {
             return {
                 valid: true,
@@ -185,6 +200,9 @@
                     });
                 }
             },
+        },
+        onVerify: async function (response) {
+            console.log('Verify: ' + response)
         },
     }
 </script>

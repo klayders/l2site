@@ -33,8 +33,9 @@ public class ItemsService {
   public Items save(int characterId) {
     Characters characters = charactersRepository.getOne(characterId);
     Items item = new Items();
-    item.setCharacters(characters);
-    return itemsRepository.save(item);
+//    item.setCharacters(characters);
+//    return itemsRepository.save(item);
+    return item;
   }
 
   public void deleteById(int id) {

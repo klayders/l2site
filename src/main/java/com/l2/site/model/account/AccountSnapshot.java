@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Data
 @NoArgsConstructor
@@ -44,11 +43,11 @@ public class AccountSnapshot {
   }
 
   private static List<CharactersSnapshot> getCharactersSnapshots(Account accounts) {
-    if (accounts.getCharacters() != null) {
-      return accounts.getCharacters().stream()
-        .map(CharactersSnapshot::of)
-        .collect(Collectors.toList());
-    }
+//    if (accounts.getCharacters() != null) {
+//      return accounts.getCharacters().stream()
+//        .map(CharactersSnapshot::of)
+//        .collect(Collectors.toList());
+//    }
     return Collections.emptyList();
   }
 
