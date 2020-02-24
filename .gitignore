@@ -30,4 +30,4 @@ build/
 ### VS Code ###
 .vscode/
 /node_modules/
-static/js/
+src/main/resources/static/js

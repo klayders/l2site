@@ -4,7 +4,7 @@
       <!--      https://i.ytimg.com/vi/C4z6mpFOvdI/maxresdefault.jpg-->
       <v-img
         class="mx-2"
-        src="js/assets/logo.png"
+        src="assets/logo.png"
         max-height="40"
         max-width="40"
         contain
@@ -55,7 +55,7 @@
 
 
     <v-navigation-drawer app expand-on-hover v-model="drawer">
-      <v-img :aspect-ratio="16/9" src="js/assets/nav.jpg">
+      <v-img :aspect-ratio="16/9" src="assets/nav.jpg">
         <v-list-item>
           <v-list-item-avatar>
             <!--          <v-img-->

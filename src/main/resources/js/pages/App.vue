@@ -1,6 +1,6 @@
 <template>
   <v-app
-    style="background: url('js/assets/DePfho.jpg') no-repeat center center fixed;
+    style="background: url('assets/DePfho.jpg') no-repeat center center fixed;
   background-size: cover;
 ">
 
