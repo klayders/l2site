@@ -103,8 +103,8 @@
           <triggerfiles>
             <triggerfile>package.json</triggerfile>
           </triggerfiles>
-          <nodeVersion>v8.11.1</nodeVersion>
-          <yarnVersion>v1.7.0</yarnVersion>
+          <nodeVersion>v13.9.0</nodeVersion>
+          <yarnVersion>v1.22.0</yarnVersion>
         </configuration>
         <executions>
           <execution>

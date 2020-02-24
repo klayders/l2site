@@ -12,14 +12,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequiredArgsConstructor
 public class MainController {
 
-  @Value("${spring.profiles.active}")
-  private String profile;
+  @Value("${dev.active:false}")
+  private boolean profile;
 
   @GetMapping
   public String main(Model model) {
 //    HashMap<Object, Object> data = new HashMap<>();
 //    model.addAttribute("frontendData", data);
-    model.addAttribute("isDevMode", "dev".equals(profile));
+    model.addAttribute("isDevMode", profile);
 
     return "index";
   }
