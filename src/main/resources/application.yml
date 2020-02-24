@@ -25,6 +25,5 @@ spring:
     database-platform: org.hibernate.dialect.MySQL8Dialect
     open-in-view: false
     show-sql: false
-  profiles:
-    active: dev
+
 
