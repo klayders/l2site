@@ -10,11 +10,12 @@
     "build": "webpack --config webpack.prod.js"
   },
   "dependencies": {
-    "@babel/polyfill": "^7.8.3",
     "@mdi/js": "^4.5.95",
     "@vue/cli": "^4.0.5",
+    "core-js": "^3.6.4",
     "file-loader": "^4.2.0",
     "material-design-icons-iconfont": "^5.0.1",
+    "regenerator-runtime": "^0.13.3",
     "vue": "^2.6.11",
     "vue-flag-icon": "^1.0.6",
     "vue-i18n": "^8.15.1",

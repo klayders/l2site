@@ -69,7 +69,7 @@ module.exports = {
   resolve: {
     extensions: ['*', '.js', '.vue', '.json'],
     modules: [
-      path.join(__dirname, 'src', 'main', 'resources', 'js'),
+      path.join(__dirname, 'src', 'main', 'resources', 'static', 'js'),
       path.join(__dirname, 'node_modules'),
     ],
   }

@@ -1,5 +1,6 @@
 import Vue from 'vue'
-import '@babel/polyfill'
+import "core-js/stable";
+import "regenerator-runtime/runtime";
 import 'api/resource.js'
 import router from "./router/router";
 import App from 'pages/App.vue'
