@@ -53,7 +53,7 @@
     <dependency>
       <groupId>com.auth0</groupId>
       <artifactId>java-jwt</artifactId>
-      <version>3.8.3</version>
+      <version>3.10.0</version>
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
@@ -84,6 +84,58 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+
+
+      <!--
+ 1. used for local installation of node and npm
+ 2. to install dependencies with npm install
+ 3. building the application
+-->
+      <plugin>
+        <groupId>com.github.eirslett</groupId>
+        <artifactId>frontend-maven-plugin</artifactId>
+        <!-- Use the latest released version:
+        https://repo1.maven.org/maven2/com/github/eirslett/frontend-maven-plugin/ -->
+        <version>1.9.1</version>
+        <configuration>
+          <installDirectory>target</installDirectory>
+          <workingDirectory>src/main/resources/js</workingDirectory>
+          <triggerfiles>
+            <triggerfile>package.json</triggerfile>
+          </triggerfiles>
+          <nodeVersion>v8.11.1</nodeVersion>
+          <yarnVersion>v1.7.0</yarnVersion>
+        </configuration>
+        <executions>
+          <execution>
+            <id>install-node-and-yarn</id>
+            <goals>
+              <goal>install-node-and-yarn</goal>
+            </goals>
+            <phase>generate-resources</phase>
+          </execution>
+          <execution>
+            <id>yarn-install</id>
+            <goals>
+              <goal>yarn</goal>
+            </goals>
+            <phase>generate-resources</phase>
+            <configuration>
+              <arguments>install</arguments>
+            </configuration>
+          </execution>
+          <execution>
+            <id>yarn-build</id>
+            <goals>
+              <goal>yarn</goal>
+            </goals>
+            <phase>generate-resources</phase>
+            <configuration>
+              <arguments>run build</arguments>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
 		</plugins>
 	</build>
 
