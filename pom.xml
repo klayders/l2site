@@ -104,16 +104,16 @@
             <triggerfile>package.json</triggerfile>
           </triggerfiles>
           <nodeVersion>v13.9.0</nodeVersion>
-          <yarnVersion>v1.22.1</yarnVersion>
+          <yarnVersion>v1.22.0</yarnVersion>
         </configuration>
         <executions>
-<!--          <execution>-->
-<!--            <id>install-node-and-yarn</id>-->
-<!--            <goals>-->
-<!--              <goal>install-node-and-yarn</goal>-->
-<!--            </goals>-->
-<!--            <phase>generate-resources</phase>-->
-<!--          </execution>-->
+          <execution>
+            <id>install-node-and-yarn</id>
+            <goals>
+              <goal>install-node-and-yarn</goal>
+            </goals>
+            <phase>generate-resources</phase>
+          </execution>
           <execution>
             <id>yarn-install</id>
             <goals>
